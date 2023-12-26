@@ -18,10 +18,10 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   scrollContent: { paddingTop: 20 },
-  itemSeperator: { height: 40 },
+  itemSeperator: { height: 40, justifyContent: 'flex-end' },
 });
 
-const ItemSeparatorComponent = () => <View style={styles.itemSeperator} />;
+const ItemSeparatorComponent = () => <View style={styles.itemSeperator}><View style={styles.seperator}/></View>;
 
 const ListHeaderComponent = () => (
   <>
@@ -31,11 +31,13 @@ const ListHeaderComponent = () => (
 );
 
 export default function Page() {
-  const { articles, renderItem } = useHome();
+  const { articles, renderItem, fetchArticles, loading } = useHome();
 
   return (
     <View style={styles.container}>
       <FlashList
+      refreshing={loading}
+      onRefresh={fetchArticles}
         contentContainerStyle={styles.scrollContent}
         estimatedItemSize={185}
         data={articles}
