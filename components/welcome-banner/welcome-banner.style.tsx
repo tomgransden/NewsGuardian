@@ -15,5 +15,5 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   buttonContainer: { position: "absolute", top: 8, right: 8 },
-  description: { color: "#fff", textAlign: "center" }
+  description: { color: "#fff", textAlign: "center" },
 });

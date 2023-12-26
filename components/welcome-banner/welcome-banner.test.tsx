@@ -1,12 +1,12 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   render,
   waitFor,
   screen,
   fireEvent,
 } from "@testing-library/react-native";
-import { WelcomeBanner } from "./welcome-banner";
 
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { WelcomeBanner } from "./welcome-banner";
 
 jest
   .spyOn(AsyncStorage, "getItem")
@@ -29,7 +29,7 @@ describe("Welcome Banner", () => {
     expect(AsyncStorage.setItem).toHaveBeenCalledWith("isFirstTime", "false");
 
     await waitFor(() =>
-      expect(screen.queryByRole("button")).not.toBeOnTheScreen()
+      expect(screen.queryByRole("button")).not.toBeOnTheScreen(),
     );
   });
 
@@ -37,7 +37,7 @@ describe("Welcome Banner", () => {
     render(<WelcomeBanner />);
 
     await waitFor(() =>
-      expect(screen.queryByRole("button")).not.toBeOnTheScreen()
+      expect(screen.queryByRole("button")).not.toBeOnTheScreen(),
     );
   });
 });

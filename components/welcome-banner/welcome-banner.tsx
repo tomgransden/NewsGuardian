@@ -1,12 +1,12 @@
-import { TouchableOpacity, View, Text } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
 import { AnimatePresence, MotiView } from "moti";
+import { TouchableOpacity, View, Text } from "react-native";
+
+import { useWelcomeBanner } from "./hooks/use-welcome-banner";
 import { styles } from "./welcome-banner.style";
 
-import { AntDesign } from "@expo/vector-icons";
-import { useWelcomeBanner } from "./hooks/use-welcome-banner";
-
-const animationOpacityZero = {opacity: 0};
-const animationOpacityOne = {opacity: 1};
+const animationOpacityZero = { opacity: 0 };
+const animationOpacityOne = { opacity: 1 };
 
 export const WelcomeBanner = () => {
   const { isFirstTime, dismissWelcomeBanner } = useWelcomeBanner();
@@ -36,7 +36,7 @@ export const WelcomeBanner = () => {
               onPress={dismissWelcomeBanner}
               hitSlop={48}
             >
-              <AntDesign color={"#fff"} size={32} name="close" />
+              <AntDesign color="#fff" size={32} name="close" />
             </TouchableOpacity>
 
             <Text accessible={false} style={styles.text}>

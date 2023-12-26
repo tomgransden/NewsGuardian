@@ -1,9 +1,9 @@
 export type INewsItem = {
-    type: 'liveblog' | 'article';
-    webTitle: string;
+  type: "liveblog" | "article";
+  webTitle: string;
 
-    fields: {
-        thumbnail: string;
-        trailText?: string
-    }
-}
+  fields: {
+    thumbnail: string;
+    trailText?: string;
+  };
+};
