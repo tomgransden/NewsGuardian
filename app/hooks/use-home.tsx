@@ -12,16 +12,15 @@ export const useHome = () => {
     setLoading(true);
 
     await fetch(
-      `https://content.guardianapis.com/search?api-key=${process.env.EXPO_PUBLIC_GUARDIAN_API_KEY}&show-fields=thumbnail,trailText`,
+      `https://content.guardianapis.com/search?api-key=${process.env.EXPO_PUBLIC_GUARDIAN_API_KEY}&show-fields=all`,
     )
       .then((res) => res.json())
-      .then((json) => setArticles(json.response.results)).finally(() => setLoading(false));
-
-
-  }
+      .then((json) => setArticles(json.response.results))
+      .finally(() => setLoading(false));
+  };
 
   useEffect(() => {
-    fetchArticles()
+    fetchArticles();
   }, []);
 
   const renderItem = useCallback(({ item }: { item: INewsItem }) => {

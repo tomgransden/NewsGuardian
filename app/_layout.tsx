@@ -9,6 +9,7 @@ export default function Layout() {
         },
         headerTintColor: "#fff",
         headerTitle: "News Guardian",
+        headerBackTitle: "Back",
       }}
     />
   );

@@ -17,11 +17,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     marginBottom: 16,
   },
-  scrollContent: { paddingTop: 20 },
-  itemSeperator: { height: 40, justifyContent: 'flex-end' },
+  scrollContent: { paddingVertical: 20 },
+  itemSeperator: { height: 20, justifyContent: "center" },
 });
 
-const ItemSeparatorComponent = () => <View style={styles.itemSeperator}><View style={styles.seperator}/></View>;
+const ItemSeparatorComponent = () => <View style={styles.itemSeperator} />;
 
 const ListHeaderComponent = () => (
   <>
@@ -36,14 +36,15 @@ export default function Page() {
   return (
     <View style={styles.container}>
       <FlashList
-      refreshing={loading}
-      onRefresh={fetchArticles}
+        refreshing={loading}
+        onRefresh={fetchArticles}
         contentContainerStyle={styles.scrollContent}
         estimatedItemSize={185}
         data={articles}
         renderItem={renderItem}
         ListHeaderComponent={ListHeaderComponent}
         ItemSeparatorComponent={ItemSeparatorComponent}
+        getItemType={(item) => item.type}
       />
     </View>
   );

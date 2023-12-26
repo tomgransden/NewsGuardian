@@ -1,15 +1,32 @@
-import { View, Text, Image } from "react-native";
+import { useMemo } from "react";
+import { View, Text, Image, StyleSheet } from "react-native";
 
 import { INewsItem } from "../../types/news-item.type";
 
+const styles = StyleSheet.create({
+  headlineContainer: { paddingHorizontal: 16 },
+  headline: { fontSize: 24, fontWeight: "bold" },
+  trail: { marginTop: 24 },
+  image: { width: "100%", height: 200, borderRadius: 8, marginTop: 8 },
+});
+
 export const NewsItemTime = ({ item }: { item: INewsItem }) => {
-  return <View style={{ }}>
-    <View style={{paddingHorizontal: 16}}>
-    <Text style={{fontSize: 24, fontWeight: 'bold'}}>{item.webTitle}</Text>
+  const source = useMemo(
+    () => ({
+      uri: item.fields.thumbnail,
+    }),
+    [item.fields.thumbnail],
+  );
 
-    <Text style={{marginTop: 24}}>{item.fields.trailText}</Text>
-    </View>
+  return (
+    <>
+      <View style={styles.headlineContainer}>
+        <Text style={styles.headline}>{item.webTitle}</Text>
 
-    <Image source={{uri: item.fields.thumbnail}} style={{width: '100%', height: 200, borderRadius: 8, marginTop: 8}}/>
-  </View>;
+        <Text style={styles.trail}>{item.fields.trailText}</Text>
+      </View>
+
+      <Image source={source} style={styles.image} />
+    </>
+  );
 };
