@@ -5,6 +5,9 @@ import { styles } from "./welcome-banner.style";
 import { AntDesign } from "@expo/vector-icons";
 import { useWelcomeBanner } from "./hooks/use-welcome-banner";
 
+const animationOpacityZero = {opacity: 0};
+const animationOpacityOne = {opacity: 1};
+
 export const WelcomeBanner = () => {
   const { isFirstTime, dismissWelcomeBanner } = useWelcomeBanner();
 
@@ -12,9 +15,9 @@ export const WelcomeBanner = () => {
     <AnimatePresence>
       {isFirstTime ? (
         <MotiView
-          from={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          from={animationOpacityZero}
+          animate={animationOpacityOne}
+          exit={animationOpacityZero}
           transition={{
             // default settings for all style values
             type: "timing",
@@ -29,10 +32,11 @@ export const WelcomeBanner = () => {
               accessible
               accessibilityRole="button"
               accessibilityLabel="Welcome to News Guardian. Press to dismiss this alert."
-              style={{ position: "absolute", top: 8, right: 8 }}
+              style={styles.buttonContainer}
               onPress={dismissWelcomeBanner}
+              hitSlop={48}
             >
-              <AntDesign color={"#fff"} size={48} name="close" />
+              <AntDesign color={"#fff"} size={32} name="close" />
             </TouchableOpacity>
 
             <Text accessible={false} style={styles.text}>
@@ -41,7 +45,7 @@ export const WelcomeBanner = () => {
             <Text
               accessible={false}
               importantForAccessibility="no"
-              style={{ color: "#fff", textAlign: "center" }}
+              style={styles.description}
             >
               Click a tile below to read the news article, and press the close
               button to hide this notifications

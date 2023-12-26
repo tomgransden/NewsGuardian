@@ -2,10 +2,10 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   container: {
-    height: 160,
+    height: 120,
     backgroundColor: "rgb(5, 41, 98)",
     paddingHorizontal: 16,
-    paddingVertical: 32,
+    paddingVertical: 16,
     justifyContent: "space-between",
   },
   text: {
@@ -14,4 +14,6 @@ export const styles = StyleSheet.create({
     fontSize: 32,
     fontWeight: "bold",
   },
+  buttonContainer: { position: "absolute", top: 8, right: 8 },
+  description: { color: "#fff", textAlign: "center" }
 });

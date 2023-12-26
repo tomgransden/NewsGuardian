@@ -1,68 +1,34 @@
-import { Text, View, Image } from "react-native";
-import { WelcomeBanner } from "../components/welcome-banner/welcome-banner";
-import { useCallback, useEffect, useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
 import { FlashList } from "@shopify/flash-list";
+import { useHome } from "./hooks/use-home";
+
+const styles = StyleSheet.create({
+  container: {flex: 1},
+  title: {fontWeight: 'bold', fontSize: 24, marginBottom: 12, marginHorizontal: 16},
+  seperator: {height: 1, backgroundColor: 'lightgray', marginHorizontal: 16, marginBottom: 16},
+  scrollContent: {paddingTop: 20},
+  itemSeperator: { height: 40 }
+});
+
+const ItemSeparatorComponent = () => <View style={styles.itemSeperator} />
+
+const ListHeaderComponent = () => <><Text style={styles.title}>Headlines</Text>
+<View style={styles.seperator}/></>
 
 export default function Page() {
-  const [articles, setArticles] = useState([]);
 
-  useEffect(() => {
-    fetch(
-      "https://content.guardianapis.com/search?api-key=c6fccadc-4f48-455e-a3cc-192faafc75a8&show-fields=thumbnail,trailText"
-    )
-      .then((res) => res.json())
-      .then((json) => setArticles(json.response.results));
-  }, []);
+  const {articles, renderItem} = useHome();
 
-  console.log(articles);
-
-  const renderItem = useCallback(
-    ({ item }) => (
-      <View
-        style={{
-          paddingBottom: 12,
-          borderRadius: 8,
-          borderWidth: 1,
-          marginHorizontal: 16,
-        }}
-      >
-        <Image
-          style={{
-            borderTopLeftRadius: 8,
-            borderTopRightRadius: 8,
-            width: "100%",
-            height: 155,
-            resizeMode: "cover",
-          }}
-          source={{
-            uri:
-              item?.fields?.["thumbnail"] ??
-              "https://fakeimg.pl/400x100/cccccc/cccccc",
-          }}
-        />
-        <View style={{ paddingHorizontal: 16 }}>
-          <Text
-            numberOfLines={3}
-            style={{ fontWeight: "bold", marginTop: 12, fontSize: 22 }}
-          >
-            {item.webTitle}
-          </Text>
-          <Text numberOfLines={3} style={{ marginTop: 8, fontSize: 16 }}>
-            {item.fields["trailText"]}
-          </Text>
-        </View>
-      </View>
-    ),
-    []
-  );
   return (
-    <View style={{ flex: 1 }}>
-      <WelcomeBanner />
+    <View style={styles.container}>
+
       <FlashList
+      contentContainerStyle={styles.scrollContent}
         estimatedItemSize={185}
         data={articles}
         renderItem={renderItem}
-        ItemSeparatorComponent={() => <View style={{ height: 40 }} />}
+        ListHeaderComponent={ListHeaderComponent}
+        ItemSeparatorComponent={ItemSeparatorComponent}
       />
     </View>
   );
