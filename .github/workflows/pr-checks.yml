@@ -1,5 +1,5 @@
 name: PR checks
-
+run-name: Checking PR ${{ github.event.number }} on GitHub Actions 🚀
 on:
   pull_request:
     types: [opened, synchronize, edited, ready_for_review]
