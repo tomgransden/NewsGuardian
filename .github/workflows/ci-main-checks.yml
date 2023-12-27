@@ -3,7 +3,7 @@ run-name: Checking latest push on GitHub Actions 🚀
 on:
   push:
     branches:
-      - production
+      - main
 jobs:
   CI-Main:
     runs-on: ubuntu-latest
