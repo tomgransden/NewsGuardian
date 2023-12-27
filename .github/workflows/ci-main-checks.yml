@@ -1,5 +1,5 @@
 name: CI after main push
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+run-name: Checking latest push on GitHub Actions 🚀
 on: [push]
 jobs:
   CI-Main:
