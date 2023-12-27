@@ -52,6 +52,18 @@
     ],
     "setupFilesAfterEnv": [
       "./jestSetup.ts"
-    ]
+    ],
+    "collectCoverageFrom": [
+      "components/**/*.{ts,tsx}",
+      "!**/node_modules/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 0,
+        "functions": 0,
+        "lines": 0,
+        "statements": -10
+      }
+    }
   }
 }
