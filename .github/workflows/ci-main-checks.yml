@@ -16,6 +16,6 @@ jobs:
         with:
           node-version: 20
       - run: npm install
-      - run: npm run lint
+      - run: npm run lint -- --fix
       - run: npm run typecheck
       - uses: stefanzweifel/git-auto-commit-action@v5

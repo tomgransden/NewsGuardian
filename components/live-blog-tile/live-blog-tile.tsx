@@ -1,6 +1,7 @@
 import { Link } from "expo-router";
 import { useMemo } from "react";
-import { View, Image, Text, Pressable, StyleSheet } from "react-native";
+import { View, Image, Text, Pressable, 
+  StyleSheet } from "react-native";
 
 import { INewsItem } from "../../types/news-item.type";
 
