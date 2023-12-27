@@ -1,6 +1,9 @@
 name: CI after main push
-run-name: Checking latest push on GitHub Actions 🚀
-on: [push]
+run-name: Checking latest main commit on GitHub Actions 🚀
+on:
+  push:
+    branches:
+      - main
 jobs:
   CI-Main:
     runs-on: ubuntu-latest
